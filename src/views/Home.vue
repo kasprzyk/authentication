@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!this.$store.state.user">
     To use this app you'll need to
     <router-link to="/login">
       Login

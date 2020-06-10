@@ -17,6 +17,11 @@ export default new Vuex.Store({
       ] = `Bearer ${userData.token}`
     },
   },
+  getters: {
+    loggedIn(state) {
+      return !!state.user
+    },
+  },
   actions: {
     register({ commit }, credentials) {
       return axios
