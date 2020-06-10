@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!this.$store.state.user">
+  <div v-if="!loggedIn">
     To use this app you'll need to
     <router-link to="/login">
       Login
@@ -12,5 +12,10 @@
 </template>
 
 <script>
-export default {}
+import { authComputed } from '../vuex/helpers.js'
+export default {
+  computed: {
+    ...authComputed
+  }
+}
 </script>
