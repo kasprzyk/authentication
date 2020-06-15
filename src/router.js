@@ -15,24 +15,32 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: Home
     },
     {
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
+      meta: { requiresAuth: true }
     },
     {
       path: '/register',
       name: 'register',
-      component: RegisterUser,
+      component: RegisterUser
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginUser,
-    },
-  ],
+      component: LoginUser
+    }
+  ]
 })
+router.beforeEach((to, from, next) => {
+  const loggedIn = localStorage.getItem('user')
 
+  if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
+    next('/')
+  }
+  next()
+})
 export default router
