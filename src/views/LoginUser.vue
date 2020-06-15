@@ -17,6 +17,7 @@
       <router-link to="/register">
         Don't have an account? Register.
       </router-link>
+      <p>{{ error }}</p>
     </form>
   </div>
 </template>
@@ -37,6 +38,9 @@ export default {
         })
         .then(() => {
           this.$router.push({ name: 'dashboard' })
+        })
+        .catch(e => {
+          this.error = e.response.data.error
         })
     }
   }
