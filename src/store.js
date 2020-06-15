@@ -6,21 +6,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: null,
+    user: null
   },
   mutations: {
     SET_USER_DATA(state, userData) {
       state.user = userData
       localStorage.setItem('user', JSON.stringify(userData))
-      axios.defaults.headers.common[
-        'Authorization'
-      ] = `Bearer ${userData.token}`
-    },
+      axios.defaults.headers.common['Authorization'] = `Bearer ${
+        userData.token
+      }`
+    }
   },
   getters: {
     loggedIn(state) {
       return !!state.user
-    },
+    }
   },
   actions: {
     register({ commit }, credentials) {
@@ -37,5 +37,8 @@ export default new Vuex.Store({
           commit('SET_USER_DATA', data)
         })
     },
-  },
+    logout({ commit }) {
+      commit('LOGOUT')
+    }
+  }
 })
